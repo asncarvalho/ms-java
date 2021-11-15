@@ -18,7 +18,7 @@ public class HrConfigServerApplication implements CommandLineRunner{
 	}
 	@Override
 	public void run(String... args) throws Exception {
-//		System.out.println("Username = " + username);	
+//		System.out.println("Username = " + username); 	
 	}
 
 }
