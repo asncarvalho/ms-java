@@ -14,8 +14,8 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
 @EnableAuthorizationServer
-public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter{
-
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
@@ -24,37 +24,29 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	
 	@Autowired
 	private JwtTokenStore tokenStore;
-	
+
 	@Autowired
 	private AuthenticationManager authenticationManager;
-	
-	
+		
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated");
+		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
 	}
 
-	//COnfigurar a autenticação com base nas credenciais do aplicativo, e pra configura com o tipo do brand-type
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.inMemory()
-			.withClient("myappname123")
-			.secret(passwordEncoder.encode("myappsecret123"))
-			.scopes("read", "write")
-			.authorizedGrantTypes("password")
-			.accessTokenValiditySeconds(86400);
+		.withClient("myappname123")
+		.secret(passwordEncoder.encode("myappsecret123"))
+		.scopes("read", "write")
+		.authorizedGrantTypes("password")
+		.accessTokenValiditySeconds(86400);
 	}
 
-	
-	//Configurar o processamento do token
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		endpoints.authenticationManager(authenticationManager)
-			.tokenStore(tokenStore)
-			.accessTokenConverter(accessTokenConverter);
+		.tokenStore(tokenStore)
+		.accessTokenConverter(accessTokenConverter);
 	}
-	
-	
-	
-	
 }
