@@ -20,15 +20,6 @@ public class Payment implements Serializable{
 	private Double dailyIncome;	
 	private Integer days;
 	
-	public Payment(String name, Double dailyIncome, Integer days) {
-		this.name = name;
-		this.dailyIncome = dailyIncome;
-		this.days = days;
-	}
-
-	public Payment() {
-	}
-
 	public double getTotal() {
 		return days * dailyIncome;
 	}
