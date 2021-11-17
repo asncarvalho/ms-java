@@ -2,17 +2,6 @@ package com.leomodulos.hrpayroll.entities;
 
 import java.io.Serializable;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
 public class Payment implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -22,5 +11,38 @@ public class Payment implements Serializable{
 	
 	public double getTotal() {
 		return days * dailyIncome;
+	}
+
+	public Payment(String name, Double dailyIncome, Integer days) {
+		this.name = name;
+		this.dailyIncome = dailyIncome;
+		this.days = days;
+	}
+
+	public Payment() {
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Double getDailyIncome() {
+		return dailyIncome;
+	}
+
+	public void setDailyIncome(Double dailyIncome) {
+		this.dailyIncome = dailyIncome;
+	}
+
+	public Integer getDays() {
+		return days;
+	}
+
+	public void setDays(Integer days) {
+		this.days = days;
 	}
 }
